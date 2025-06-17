@@ -11,7 +11,7 @@ var b = 20986;
 
 //async function, offloaded to libuv
 https.get("https://dummyjson.com/products/1", (res) => {
-    console.log("Fetched Data successfully");
+    console.log("Fetched https Data successfully");
     res.resume();
 
    

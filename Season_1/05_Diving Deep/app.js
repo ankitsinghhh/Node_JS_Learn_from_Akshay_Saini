@@ -12,7 +12,7 @@
 // const calcmul = require("./calculate/multiply.js") 
 
 // instead of importing from two of them , we can create index.js in that folder and import them in that one and export them together from this index file 
-const {calcmul,calcsum,x} = require("./calculate") // it makes it easier to import and also now that folder is acting like a module and we need to write /calculate/index.js , only calculate does the work
+const {calcmul,calcsum,x} = require("./calculate") // it makes it easier to import and also now that folder is acting like a module and we need not to write /calculate/index.js , only calculate does the work
 
 
 // es6/mjs pattern to import
