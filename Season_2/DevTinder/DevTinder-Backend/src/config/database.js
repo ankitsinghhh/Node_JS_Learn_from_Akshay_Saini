@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+// require('dotenv').config();
 
-const mongoURI = "mongodb+srv://ankitsingh79834:iqZvKmb1kaN5rGic@cluster0.e58nx.mongodb.net/devTinder"; // your actual connection string
+const mongoURI = process.env.DB_CONNECTION_SECRET // your actual connection string
 
 const connectDB = async () => {
     if (mongoose.connection.readyState === 1) {

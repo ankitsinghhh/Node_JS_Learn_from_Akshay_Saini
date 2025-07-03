@@ -45,7 +45,7 @@ const Connections = () => {
             {/* <img alt='profile-photo' src={connection?.photoUrl} className='w-16 h-16 rounded-full mx-auto my-5' />
             <p className='text-xl font-bold text-center'>{connection?.firstName}</p>
             */}
-            <ConnectionCard   user={{firstName,lastName,photoUrl,age,gender,about}} />
+            <ConnectionCard   user={{firstName,lastName,photoUrl,age,gender,about,_id}} />
           
            
          </div>

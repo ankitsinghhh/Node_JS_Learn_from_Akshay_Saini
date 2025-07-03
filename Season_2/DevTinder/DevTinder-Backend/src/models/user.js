@@ -58,6 +58,13 @@ const userSchema = new mongoose.Schema(
             //     }   
             // }
         },
+        isPremium:{
+            type:Boolean,
+            default:false,
+        },
+        membershipType:{
+            type:String,
+        },
         photoUrl:{
             type:String,
             default:"https://avatars.githubusercontent.com/u/40992581?v=4",

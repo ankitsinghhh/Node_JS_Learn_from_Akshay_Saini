@@ -4,6 +4,9 @@ const ConnectionRequest = require("../models/connectionRequest.js")
 const User = require('../models/user.js')
 const { connect } = require('mongoose')
 
+//for sending email feature using aws SES 
+const sendEmail = require("../utils/sendEmail")
+
 const requestRouter = express.Router()
 
 // API to send connection request to the intended user with a status - ignored or interested - > /request/send/:status/:toUserId
@@ -59,6 +62,12 @@ requestRouter.post(
       })
 
       const data = await connectionRequest.save()
+
+      // const emailRes = await sendEmail.run(
+      //   "A new Connection Request from "+req.user.firstName,
+      //   req.user.firstName + "'s status for " + toUserIdExists.firstName + " is now "+status
+      // )
+      // console.log(emailRes)
 
      res.json({
       message : req.user.firstName + "'s status for " + toUserIdExists.firstName + " is now "+status,

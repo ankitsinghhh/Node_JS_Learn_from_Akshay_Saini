@@ -1,8 +1,12 @@
 // Importing the Express framework
 const express = require('express');
+require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const {connectDB} = require('./config/database');
 const cors = require('cors');
+const http = require('http')
+
+require("./utils/cronjob.js")
 
 
 // Creating an instance/object of an Express application
@@ -22,21 +26,34 @@ const authRouter = require("./routes/authRouter")
 const profileRouter = require("./routes/profileRouter")
 const requestRouter = require("./routes/requestRouter")
 const userRouter = require("./routes/userRouter")
+const premiumRequestRouter = require("./routes/premiumRequestRouter")
+const razorpayRouter = require("./routes/razorpayRouter");
+const chatRouter = require("./routes/chatRouter")
+const initializeSocket = require('./utils/socket.js');
 
 app.use("/",authRouter)
 app.use("/",profileRouter)
 app.use("/",requestRouter)
 app.use("/",userRouter)
+app.use("/",premiumRequestRouter)
+app.use("/",razorpayRouter)
+app.use("/", chatRouter);
 
-// now the above code means that , when the request will come lets say /login , then it will check in first authRouter and it will match there 
-// but when the request will come as /profile , then also it will first check inside the authRouter and it will not find , then move on to the next one , then in profileRouter where the request /profile will be matched and response will be sent 
+//creating a server using http module
+const server = http.createServer(app)
+initializeSocket(server)
+
+
+ 
+
+
 
 //connecting to the database first then initializing the server
 connectDB()
 .then(()=>{
   console.log("database connection established successfully") 
   //after establishing database connection, we can start the server using app.listen
-  app.listen(7777, () => {
+  server.listen(process.env.PORT, () => {
     console.log("✅ Server is running on port 7777 🚀");
   });
 }
